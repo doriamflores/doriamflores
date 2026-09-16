@@ -55,7 +55,7 @@ const CV_DATA_I18N = {
         "email": "doriamfloreszorrilla@gmail.com",
         "github": "https://github.com/Doriamflores",
         "githubUser": "@Doriamflores",
-        "linkedin": "https://www.linkedin.com/in/doriam-esau-flores-zorrilla"
+        "linkedin": "https://www.linkedin.com/in/doriamflores/"
       }
     },
     "skills": [
@@ -403,7 +403,7 @@ const CV_DATA_I18N = {
         "email": "doriamfloreszorrilla@gmail.com",
         "github": "https://github.com/Doriamflores",
         "githubUser": "@Doriamflores",
-        "linkedin": "https://www.linkedin.com/in/doriam-esau-flores-zorrilla"
+        "linkedin": "https://www.linkedin.com/in/doriamflores/"
       }
     },
     "skills": [
