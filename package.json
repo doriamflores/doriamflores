@@ -1,0 +1,20 @@
+{
+  "name": "doriam-cv-web",
+  "version": "1.0.0",
+  "description": "Minimalist Web CV and Backend Microservices Portfolio for Doriam Flores",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve -l 3000 .",
+    "start": "npx serve -l 3000 ."
+  },
+  "keywords": [
+    "cv",
+    "portfolio",
+    "backend",
+    "nestjs",
+    "python",
+    "doriam-flores"
+  ],
+  "author": "Doriam Flores",
+  "license": "MIT"
+}
