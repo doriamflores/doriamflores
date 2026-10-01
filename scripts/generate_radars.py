@@ -1,5 +1,6 @@
 import math
 import os
+import html
 
 def generate_radar(
     labels, values, filename, title, filter_id, accent_color="#00f3ff", fill_color="rgba(0, 243, 255, 0.25)", is_dark=True
@@ -21,6 +22,8 @@ def generate_radar(
     # Concentric levels
     levels = [0.25, 0.50, 0.75, 1.0]
 
+    safe_title = html.escape(title)
+
     svg_parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}">',
         '  <defs>',
@@ -30,7 +33,7 @@ def generate_radar(
         '    </filter>',
         '  </defs>',
         f'  <rect width="{width}" height="{height}" rx="12" fill="{bg_color}" stroke="{card_border}" stroke-width="1.5"/>',
-        f'  <text x="{width//2}" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="{title_color}" letter-spacing="1">⚡ {title} ⚡</text>',
+        f'  <text x="{width//2}" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="{title_color}" letter-spacing="1">⚡ {safe_title} ⚡</text>',
         f'  <line x1="30" y1="52" x2="{width-30}" y2="52" stroke="{grid_color}" stroke-width="1"/>'
     ]
 
@@ -53,7 +56,6 @@ def generate_radar(
         y = cy + radius * math.sin(a)
         svg_parts.append(f'  <line x1="{cx}" y1="{cy}" x2="{x:.1f}" y2="{y:.1f}" stroke="{grid_color}" stroke-width="1"/>')
 
-        # Label position
         lx = cx + (radius + 28) * math.cos(a)
         ly = cy + (radius + 18) * math.sin(a)
         anchor = "middle"
@@ -63,8 +65,9 @@ def generate_radar(
             anchor = "end"
 
         val_pct = int(values[i] * 100)
+        safe_label = html.escape(labels[i])
         svg_parts.append(
-            f'  <text x="{lx:.1f}" y="{ly:.1f}" text-anchor="{anchor}" font-family="JetBrains Mono, monospace" font-size="11" fill="{text_color}" font-weight="500">{labels[i]} <tspan fill="{accent_color}" font-weight="700">[{val_pct}%]</tspan></text>'
+            f'  <text x="{lx:.1f}" y="{ly:.1f}" text-anchor="{anchor}" font-family="JetBrains Mono, monospace" font-size="11" fill="{text_color}" font-weight="500">{safe_label} <tspan fill="{accent_color}" font-weight="700">[{val_pct}%]</tspan></text>'
         )
 
     # Calculate data points
@@ -78,14 +81,11 @@ def generate_radar(
 
     poly_pts_str = " ".join([f"{x:.1f},{y:.1f}" for x, y in data_pts])
 
-    # Draw data polygon
     svg_parts.append(f'  <polygon points="{poly_pts_str}" fill="{fill_color}" stroke="{accent_color}" stroke-width="2.5" filter="url(#{filter_id})"/>')
 
-    # Draw vertex dots
     for x, y in data_pts:
         svg_parts.append(f'  <circle cx="{x:.1f}" cy="{y:.1f}" r="4" fill="{accent_color}" stroke="{bg_color}" stroke-width="1.5"/>')
 
-    # Footer note
     svg_parts.append(f'  <text x="{width//2}" y="{height - 15}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="{text_color}" opacity="0.6">status: verified_production · tps: ultra_high</text>')
     svg_parts.append('</svg>')
 
@@ -96,48 +96,47 @@ def generate_radar(
 if __name__ == '__main__':
     out_dir = r"C:\Users\Door\Documents\github-doriam-profile\assets"
 
-    # Radar 1: Backend Architecture & Systems
     backend_labels = ["Microservicios", "Event-Driven", "Cloud AWS", "DB & Cache", "IA Agents", "High TPS APIs"]
     backend_vals = [0.96, 0.90, 0.88, 0.94, 0.88, 0.95]
 
-    generate_radar(
-        backend_labels, backend_vals,
-        os.path.join(out_dir, "radar-backend-dark.svg"),
-        "BACKEND ARCHITECTURE SIGNALS",
-        filter_id="glow_backend_dark",
-        accent_color="#00f3ff",
-        fill_color="rgba(0, 243, 255, 0.22)",
-        is_dark=True
-    )
-    generate_radar(
-        backend_labels, backend_vals,
-        os.path.join(out_dir, "radar-backend-light.svg"),
-        "BACKEND ARCHITECTURE SIGNALS",
-        filter_id="glow_backend_light",
-        accent_color="#0284c7",
-        fill_color="rgba(2, 132, 199, 0.20)",
-        is_dark=False
-    )
+    for suffix in ["", ".v2"]:
+        generate_radar(
+            backend_labels, backend_vals,
+            os.path.join(out_dir, f"radar-backend-dark{suffix}.svg"),
+            "BACKEND ARCHITECTURE SIGNALS",
+            filter_id=f"glow_backend_dark{suffix.replace('.', '_')}",
+            accent_color="#00f3ff",
+            fill_color="rgba(0, 243, 255, 0.22)",
+            is_dark=True
+        )
+        generate_radar(
+            backend_labels, backend_vals,
+            os.path.join(out_dir, f"radar-backend-light{suffix}.svg"),
+            "BACKEND ARCHITECTURE SIGNALS",
+            filter_id=f"glow_backend_light{suffix.replace('.', '_')}",
+            accent_color="#0284c7",
+            fill_color="rgba(2, 132, 199, 0.20)",
+            is_dark=False
+        )
 
-    # Radar 2: Core Tech Stack
-    stack_labels = ["TypeScript", "NestJS", "Node.js", "Python", "SQL / NoSQL", "Docker / Linux"]
-    stack_vals = [0.95, 0.96, 0.95, 0.85, 0.92, 0.90]
+        stack_labels = ["TypeScript", "NestJS", "Node.js", "Python", "SQL / NoSQL", "Docker / Linux"]
+        stack_vals = [0.95, 0.96, 0.95, 0.85, 0.92, 0.90]
 
-    generate_radar(
-        stack_labels, stack_vals,
-        os.path.join(out_dir, "radar-stack-dark.svg"),
-        "CORE RUNTIME & LANGUAGE STACK",
-        filter_id="glow_stack_dark",
-        accent_color="#ff007f",
-        fill_color="rgba(255, 0, 127, 0.22)",
-        is_dark=True
-    )
-    generate_radar(
-        stack_labels, stack_vals,
-        os.path.join(out_dir, "radar-stack-light.svg"),
-        "CORE RUNTIME & LANGUAGE STACK",
-        filter_id="glow_stack_light",
-        accent_color="#db2777",
-        fill_color="rgba(219, 39, 119, 0.20)",
-        is_dark=False
-    )
+        generate_radar(
+            stack_labels, stack_vals,
+            os.path.join(out_dir, f"radar-stack-dark{suffix}.svg"),
+            "CORE RUNTIME & LANGUAGE STACK",
+            filter_id=f"glow_stack_dark{suffix.replace('.', '_')}",
+            accent_color="#ff007f",
+            fill_color="rgba(255, 0, 127, 0.22)",
+            is_dark=True
+        )
+        generate_radar(
+            stack_labels, stack_vals,
+            os.path.join(out_dir, f"radar-stack-light{suffix}.svg"),
+            "CORE RUNTIME & LANGUAGE STACK",
+            filter_id=f"glow_stack_light{suffix.replace('.', '_')}",
+            accent_color="#db2777",
+            fill_color="rgba(219, 39, 119, 0.20)",
+            is_dark=False
+        )

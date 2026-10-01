@@ -1,4 +1,5 @@
 import os
+import html
 import numpy as np
 from PIL import Image, ImageOps, ImageEnhance, ImageFilter
 
@@ -45,10 +46,9 @@ def point_path(points: np.ndarray) -> str:
         chunks.append(f"M{x0} {y}h{x1 - x0 + 1}")
     return "".join(chunks)
 
-def get_portrait_path(photo_path: str, offset_x=65, offset_y=140, is_dark=True):
+def get_portrait_path(photo_path: str, offset_x=69, offset_y=140, is_dark=True):
     img = Image.open(photo_path).convert("RGB")
     w, h = img.size
-    # Center crop square / portrait
     crop_size = min(w, h)
     left = (w - crop_size) // 2
     top = int((h - crop_size) * 0.2)
@@ -68,7 +68,6 @@ def get_portrait_path(photo_path: str, offset_x=65, offset_y=140, is_dark=True):
 
     arr = np.asarray(gray)
     bits = floyd_steinberg(arr)
-    # In dark mode, lit pixels are 1; in light mode, dark pixels are 0 so we want ~bits
     active = bits if is_dark else ~bits
     ys, xs = np.where(active)
     if len(xs) == 0:
@@ -76,7 +75,7 @@ def get_portrait_path(photo_path: str, offset_x=65, offset_y=140, is_dark=True):
     points = np.column_stack((offset_x + xs, offset_y + ys)).astype(np.float32)
     return point_path(points)
 
-def generate_banner(output_path, photo_path, is_dark=True):
+def generate_banner(output_path, photo_path, filter_id, is_dark=True):
     W, H = 1180, 610
 
     if is_dark:
@@ -131,8 +130,6 @@ def generate_banner(output_path, photo_path, is_dark=True):
         ("18", "  linkedin: ", False, cyan_accent, "/in/doriamflores", text_white),
         ("19", "  github: ", False, cyan_accent, "@Doriamflores", text_white),
     ]
-
-    filter_id = "glow_banner_dark" if is_dark else "glow_banner_light"
 
     svg_parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc">',
@@ -211,13 +208,13 @@ def generate_banner(output_path, photo_path, is_dark=True):
         svg_parts.append(f'  <text x="510" y="{y}" text-anchor="end" class="mono" font-size="12" fill="{line_num}">{ln}</text>')
 
         if item[2]:
-            sec_name = item[1]
+            sec_name = html.escape(item[1])
             col = item[3]
             svg_parts.append(f'  <text x="528" y="{y}" class="mono" font-size="12" font-weight="700" fill="{col}">{sec_name}</text>')
         else:
-            k = item[1]
+            k = html.escape(item[1])
             k_col = item[3]
-            v = item[4]
+            v = html.escape(item[4])
             v_col = item[5]
             svg_parts.append(f'  <text x="528" y="{y}" class="mono" font-size="12"><tspan fill="{k_col}">{k}</tspan><tspan fill="{v_col}">{v}</tspan></text>')
 
@@ -242,5 +239,16 @@ if __name__ == '__main__':
     photo = os.path.join(base_dir, "assets", "profile.jpg")
     assets_dir = os.path.join(base_dir, "assets")
 
-    generate_banner(os.path.join(assets_dir, "banner-dark.svg"), photo, is_dark=True)
-    generate_banner(os.path.join(assets_dir, "banner-light.svg"), photo, is_dark=False)
+    for suffix in ["", ".v2"]:
+        generate_banner(
+            os.path.join(assets_dir, f"banner-dark{suffix}.svg"),
+            photo,
+            filter_id=f"glow_banner_dark{suffix.replace('.', '_')}",
+            is_dark=True
+        )
+        generate_banner(
+            os.path.join(assets_dir, f"banner-light{suffix}.svg"),
+            photo,
+            filter_id=f"glow_banner_light{suffix.replace('.', '_')}",
+            is_dark=False
+        )

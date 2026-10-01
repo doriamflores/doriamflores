@@ -6,7 +6,7 @@
     </filter>
   </defs>
   <rect width="440" height="390" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
-  <text x="220" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#0284c7" letter-spacing="1">⚡ CORE RUNTIME & LANGUAGE STACK ⚡</text>
+  <text x="220" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#0284c7" letter-spacing="1">⚡ CORE RUNTIME &amp; LANGUAGE STACK ⚡</text>
   <line x1="30" y1="52" x2="410" y2="52" stroke="#cbd5e1" stroke-width="1"/>
   <polygon points="220.0,185.0 246.0,200.0 246.0,230.0 220.0,245.0 194.0,230.0 194.0,200.0" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" opacity="0.8"/>
   <polygon points="220.0,155.0 272.0,185.0 272.0,245.0 220.0,275.0 168.0,245.0 168.0,185.0" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" opacity="0.8"/>
