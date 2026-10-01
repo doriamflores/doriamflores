@@ -1,11 +1,11 @@
 <div align="center">
 
-<!-- CYBERPUNK HEADER BANNER WITH DITHERED PORTRAIT & NEOVIM YAML (DARK/LIGHT SUPPORT) -->
+<!-- CYBERPUNK HEADER BANNER WITH ANIMATED TECH LOGOS & NEOVIM YAML (DARK/LIGHT SUPPORT) -->
 <a href="https://doriamflores.github.io/doriamflores/">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.v2.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.v2.svg">
-    <img src="assets/banner-dark.v2.svg" width="960" alt="Doriam Flores - Backend Architect & AI Integrator">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.v3.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.v3.svg">
+    <img src="assets/banner-dark.v3.svg" width="960" alt="Doriam Flores - Backend Architect &amp; AI Integrator">
   </picture>
 </a>
 
