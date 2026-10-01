@@ -3,9 +3,9 @@
 <!-- CYBERPUNK HEADER BANNER WITH ANIMATED TECH LOGOS & NEOVIM YAML (DARK/LIGHT SUPPORT) -->
 <a href="https://doriamflores.github.io/doriamflores/">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.v3.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.v3.svg">
-    <img src="assets/banner-dark.v3.svg" width="960" alt="Doriam Flores - Backend Architect &amp; AI Integrator">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.v4.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.v4.svg">
+    <img src="assets/banner-dark.v4.svg" width="960" alt="Doriam Flores - Backend Architect &amp; AI Integrator">
   </picture>
 </a>
 
@@ -153,5 +153,5 @@
 <br><br>
 
 <div align="center">
-<sub>Hecho con mucha cafeína y ❤️ · 🇵🇪 Perú es clave</sub>
+<sub>Hecho con mucha cafeína y ❤️</sub>
 </div>

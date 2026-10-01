@@ -1,12 +1,10 @@
 import os
 import re
 import html
-import xml.etree.ElementTree as ET
 
 def extract_svg_content(svg_path):
     with open(svg_path, 'r', encoding='utf-8') as f:
         content = f.read()
-    # Strip <svg ...> and </svg> to get inner nodes
     match = re.search(r'<svg[^>]*>(.*)</svg>', content, re.DOTALL)
     if match:
         return match.group(1).strip()
@@ -28,6 +26,7 @@ def generate_animated_banner(output_path, filter_id, is_dark=True):
         purple_accent = "#b026ff"
         muted_text = "#64748b"
         line_num = "#475569"
+        peru_red = "#ff1744"
     else:
         bg = "#f1f5f9"
         panel_bg = "#ffffff"
@@ -41,8 +40,8 @@ def generate_animated_banner(output_path, filter_id, is_dark=True):
         purple_accent = "#7c3aed"
         muted_text = "#64748b"
         line_num = "#94a3b8"
+        peru_red = "#d91023"
 
-    # YAML profile content lines
     yaml_lines = [
         (" 1", "profile:", True, purple_accent),
         (" 2", "  subject: ", False, pink_accent, "Doriam Flores", text_white),
@@ -71,18 +70,21 @@ def generate_animated_banner(output_path, filter_id, is_dark=True):
     docker_inner = extract_svg_content(os.path.join(assets_dir, "icon-skill-docker.svg"))
     ts_inner = extract_svg_content(os.path.join(assets_dir, "icon-skill-typescript.svg"))
 
-    # Icon placement box: center (244, 280), size 170x170 -> x=159, y=195
     icon_x, icon_y, icon_size = 159, 195, 170
 
     svg_parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-labelledby="title desc">',
         f'  <title id="title">Doriam Flores - Live System Profile</title>',
-        f'  <desc id="desc">Animated terminal profile cycling official NestJS, Linux, Docker, and TypeScript logos every 3 seconds.</desc>',
+        f'  <desc id="desc">Animated terminal profile cycling NestJS, Linux, Docker, TypeScript and Peru Flag every 3 seconds.</desc>',
         '  <defs>',
         f'    <filter id="{filter_id}" x="-20%" y="-20%" width="140%" height="140%">',
         '      <feGaussianBlur stdDeviation="3.5" result="blur"/>',
         '      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>',
         '    </filter>',
+        '    <!-- Peru Flag Clip -->',
+        '    <clipPath id="peruClip">',
+        '      <rect x="0" y="0" width="180" height="120" rx="12"/>',
+        '    </clipPath>',
         '  </defs>',
 
         '  <style>',
@@ -104,7 +106,7 @@ def generate_animated_banner(output_path, filter_id, is_dark=True):
         f'  <text x="285" y="39" class="mono" font-size="13" fill="{cyan_accent}" font-weight="700">DO\'0R.DEV // CYBER_CORE [ONLINE ⚡]</text>',
         f'  <text x="{W-150}" y="39" class="mono" font-size="12" fill="{green_accent}" font-weight="600">UPTIME: 99.99%</text>',
 
-        f'  <!-- ==================== LEFT PANEL: ROTATING TECH LOGOS (3s CYCLE) ==================== -->',
+        f'  <!-- ==================== LEFT PANEL: ROTATING TECH LOGOS + PERU (3s CYCLE) ==================== -->',
         f'  <rect x="35" y="76" width="418" height="500" rx="8" fill="{panel_inner}" stroke="{line_color}" stroke-width="1.5"/>',
         f'  <path d="M35 116 H453" stroke="{line_color}" stroke-width="1.5"/>',
         f'  <text x="49" y="101" class="mono" font-size="13" font-weight="700" fill="{cyan_accent}" letter-spacing="1">⚡ RUNTIME.ENGINE // MODULES</text>',
@@ -123,59 +125,81 @@ def generate_animated_banner(output_path, filter_id, is_dark=True):
         f'  </circle>',
     ]
 
-    # Animation Cycle: 12 seconds total (4 logos * 3s each)
-    # 01. NESTJS (0s - 3s)
+    # Animation Cycle: 15 seconds total (5 items * 3s each)
+    # 01. NESTJS (0s - 3s: 0% to 20%)
+    # 02. LINUX (3s - 6s: 20% to 40%)
+    # 03. DOCKER (6s - 9s: 40% to 60%)
+    # 04. TYPESCRIPT (9s - 12s: 60% to 80%)
+    # 05. PERÚ ES CLAVE (12s - 15s: 80% to 100%)
     svg_parts.extend([
-        f'  <!-- 01. NESTJS OFFICIAL LOGO (0s - 3s) -->',
+        f'  <!-- 01. NESTJS (0s - 3s) -->',
         f'  <g id="logo-nestjs">',
-        f'    <animate attributeName="opacity" dur="12s" repeatCount="indefinite" keyTimes="0;0.02;0.23;0.25;0.98;1" values="1;1;1;0;0;1"/>',
+        f'    <animate attributeName="opacity" dur="15s" repeatCount="indefinite" keyTimes="0;0.02;0.18;0.20;0.98;1" values="1;1;1;0;0;1"/>',
         f'    <svg x="{icon_x}" y="{icon_y}" width="{icon_size}" height="{icon_size}" viewBox="0 0 256 256">',
         f'      {nestjs_inner}',
         f'    </svg>',
-        f'    <!-- Telemetry Label -->',
         f'    <text x="244" y="435" text-anchor="middle" class="mono" font-size="15" font-weight="700" fill="#ea284e">NESTJS FRAMEWORK</text>',
         f'    <text x="244" y="460" text-anchor="middle" class="mono" font-size="11" fill="{muted_text}">Enterprise Architecture &amp; Microservices</text>',
         f'    <rect x="174" y="480" width="140" height="22" rx="4" fill="#ea284e" fill-opacity="0.15" stroke="#ea284e" stroke-width="1"/>',
-        f'    <text x="244" y="495" text-anchor="middle" class="mono" font-size="10" font-weight="700" fill="#ea284e">ACTIVE // 01 of 04</text>',
+        f'    <text x="244" y="495" text-anchor="middle" class="mono" font-size="10" font-weight="700" fill="#ea284e">MODULE // 01 of 05</text>',
         f'  </g>',
 
-        f'  <!-- 02. LINUX OFFICIAL TUX LOGO (3s - 6s) -->',
+        f'  <!-- 02. LINUX (3s - 6s) -->',
         f'  <g id="logo-linux" opacity="0">',
-        f'    <animate attributeName="opacity" dur="12s" repeatCount="indefinite" keyTimes="0;0.23;0.25;0.48;0.50;1" values="0;0;1;1;0;0"/>',
+        f'    <animate attributeName="opacity" dur="15s" repeatCount="indefinite" keyTimes="0;0.18;0.20;0.38;0.40;1" values="0;0;1;1;0;0"/>',
         f'    <svg x="{icon_x}" y="{icon_y}" width="{icon_size}" height="{icon_size}" viewBox="0 0 256 256">',
         f'      {linux_inner}',
         f'    </svg>',
-        f'    <!-- Telemetry Label -->',
         f'    <text x="244" y="435" text-anchor="middle" class="mono" font-size="15" font-weight="700" fill="{yellow_accent if is_dark else "#d97706"}">LINUX ENVIRONMENT</text>',
         f'    <text x="244" y="460" text-anchor="middle" class="mono" font-size="11" fill="{muted_text}">Server CLI · Bash · POSIX Kernel Core</text>',
         f'    <rect x="174" y="480" width="140" height="22" rx="4" fill="{yellow_accent if is_dark else "#d97706"}" fill-opacity="0.15" stroke="{yellow_accent if is_dark else "#d97706"}" stroke-width="1"/>',
-        f'    <text x="244" y="495" text-anchor="middle" class="mono" font-size="10" font-weight="700" fill="{yellow_accent if is_dark else "#d97706"}">ACTIVE // 02 of 04</text>',
+        f'    <text x="244" y="495" text-anchor="middle" class="mono" font-size="10" font-weight="700" fill="{yellow_accent if is_dark else "#d97706"}">MODULE // 02 of 05</text>',
         f'  </g>',
 
-        f'  <!-- 03. DOCKER OFFICIAL WHALE LOGO (6s - 9s) -->',
+        f'  <!-- 03. DOCKER (6s - 9s) -->',
         f'  <g id="logo-docker" opacity="0">',
-        f'    <animate attributeName="opacity" dur="12s" repeatCount="indefinite" keyTimes="0;0.48;0.50;0.73;0.75;1" values="0;0;1;1;0;0"/>',
+        f'    <animate attributeName="opacity" dur="15s" repeatCount="indefinite" keyTimes="0;0.38;0.40;0.58;0.60;1" values="0;0;1;1;0;0"/>',
         f'    <svg x="{icon_x}" y="{icon_y}" width="{icon_size}" height="{icon_size}" viewBox="0 0 256 256">',
         f'      {docker_inner}',
         f'    </svg>',
-        f'    <!-- Telemetry Label -->',
         f'    <text x="244" y="435" text-anchor="middle" class="mono" font-size="15" font-weight="700" fill="#2496ed">DOCKER ENGINE</text>',
         f'    <text x="244" y="460" text-anchor="middle" class="mono" font-size="11" fill="{muted_text}">Containers · High Concurrency Deploy</text>',
         f'    <rect x="174" y="480" width="140" height="22" rx="4" fill="#2496ed" fill-opacity="0.15" stroke="#2496ed" stroke-width="1"/>',
-        f'    <text x="244" y="495" text-anchor="middle" class="mono" font-size="10" font-weight="700" fill="#2496ed">ACTIVE // 03 of 04</text>',
+        f'    <text x="244" y="495" text-anchor="middle" class="mono" font-size="10" font-weight="700" fill="#2496ed">MODULE // 03 of 05</text>',
         f'  </g>',
 
-        f'  <!-- 04. TYPESCRIPT OFFICIAL BADGE LOGO (9s - 12s) -->',
+        f'  <!-- 04. TYPESCRIPT (9s - 12s) -->',
         f'  <g id="logo-typescript" opacity="0">',
-        f'    <animate attributeName="opacity" dur="12s" repeatCount="indefinite" keyTimes="0;0.73;0.75;0.98;1" values="0;0;1;1;0"/>',
+        f'    <animate attributeName="opacity" dur="15s" repeatCount="indefinite" keyTimes="0;0.58;0.60;0.78;0.80;1" values="0;0;1;1;0;0"/>',
         f'    <svg x="{icon_x}" y="{icon_y}" width="{icon_size}" height="{icon_size}" viewBox="0 0 256 256">',
         f'      {ts_inner}',
         f'    </svg>',
-        f'    <!-- Telemetry Label -->',
         f'    <text x="244" y="435" text-anchor="middle" class="mono" font-size="15" font-weight="700" fill="#3178c6">TYPESCRIPT RUNTIME</text>',
         f'    <text x="244" y="460" text-anchor="middle" class="mono" font-size="11" fill="{muted_text}">Strict Type Safety &amp; Clean Code</text>',
         f'    <rect x="174" y="480" width="140" height="22" rx="4" fill="#3178c6" fill-opacity="0.15" stroke="#3178c6" stroke-width="1"/>',
-        f'    <text x="244" y="495" text-anchor="middle" class="mono" font-size="10" font-weight="700" fill="#3178c6">ACTIVE // 04 of 04</text>',
+        f'    <text x="244" y="495" text-anchor="middle" class="mono" font-size="10" font-weight="700" fill="#3178c6">MODULE // 04 of 05</text>',
+        f'  </g>',
+
+        f'  <!-- 05. 🇵🇪 BANDERA DE PERÚ // PERÚ ES CLAVE (12s - 15s) -->',
+        f'  <g id="logo-peru" opacity="0">',
+        f'    <animate attributeName="opacity" dur="15s" repeatCount="indefinite" keyTimes="0;0.78;0.80;0.98;1" values="0;0;1;1;0"/>',
+        f'    <!-- Glowing Frame for Flag -->',
+        f'    <g transform="translate(154, 220)">',
+        f'      <rect x="-4" y="-4" width="188" height="128" rx="15" fill="none" stroke="{peru_red}" stroke-width="2.5" opacity="0.8"/>',
+        f'      <g clip-path="url(#peruClip)">',
+        f'        <!-- Red Stripe 1 -->',
+        f'        <rect x="0" y="0" width="60" height="120" fill="#D91023"/>',
+        f'        <!-- White Stripe -->',
+        f'        <rect x="60" y="0" width="60" height="120" fill="#FFFFFF"/>',
+        f'        <!-- Red Stripe 2 -->',
+        f'        <rect x="120" y="0" width="60" height="120" fill="#D91023"/>',
+        f'      </g>',
+        f'    </g>',
+        f'    <!-- Telemetry Label -->',
+        f'    <text x="244" y="435" text-anchor="middle" class="mono" font-size="16" font-weight="900" fill="{peru_red}" letter-spacing="1.5">🇵🇪 PERÚ ES CLAVE 🇵🇪</text>',
+        f'    <text x="244" y="460" text-anchor="middle" class="mono" font-size="11" fill="{muted_text}">Powered by Ceviche &amp; High Concurrency 🐟⚡</text>',
+        f'    <rect x="164" y="480" width="160" height="22" rx="4" fill="{peru_red}" fill-opacity="0.18" stroke="{peru_red}" stroke-width="1"/>',
+        f'    <text x="244" y="495" text-anchor="middle" class="mono" font-size="10" font-weight="800" fill="{peru_red}">LOCAL_NODE // 05 of 05 ⚡</text>',
         f'  </g>',
 
         f'  <!-- Cyber HUD Brackets on corners -->',
@@ -237,13 +261,13 @@ def generate_animated_banner(output_path, filter_id, is_dark=True):
 
     with open(output_path, "w", encoding="utf-8") as f:
         f.write("\n".join(svg_parts))
-    print(f"Generated clean official animated banner: {output_path} ({os.path.getsize(output_path):,} bytes)")
+    print(f"Generated Peru-enabled banner: {output_path} ({os.path.getsize(output_path):,} bytes)")
 
 if __name__ == '__main__':
     base_dir = r"C:\Users\Door\Documents\github-doriam-profile"
     assets_dir = os.path.join(base_dir, "assets")
 
-    for suffix in ["", ".v2", ".v3"]:
+    for suffix in ["", ".v2", ".v3", ".v4"]:
         generate_animated_banner(
             os.path.join(assets_dir, f"banner-dark{suffix}.svg"),
             filter_id=f"glow_banner_dark{suffix.replace('.', '_')}",
