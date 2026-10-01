@@ -2,7 +2,7 @@ import math
 import os
 
 def generate_radar(
-    labels, values, filename, title, accent_color="#00f3ff", fill_color="rgba(0, 243, 255, 0.25)", is_dark=True
+    labels, values, filename, title, filter_id, accent_color="#00f3ff", fill_color="rgba(0, 243, 255, 0.25)", is_dark=True
 ):
     bg_color = "#0a0c14" if is_dark else "#f8fafc"
     card_border = "#1f2338" if is_dark else "#e2e8f0"
@@ -24,7 +24,7 @@ def generate_radar(
     svg_parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}">',
         '  <defs>',
-        f'    <filter id="glow-{filename}" x="-20%" y="-20%" width="140%" height="140%">',
+        f'    <filter id="{filter_id}" x="-20%" y="-20%" width="140%" height="140%">',
         '      <feGaussianBlur stdDeviation="3.5" result="blur" />',
         '      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>',
         '    </filter>',
@@ -34,7 +34,7 @@ def generate_radar(
         f'  <line x1="30" y1="52" x2="{width-30}" y2="52" stroke="{grid_color}" stroke-width="1"/>'
     ]
 
-    # Draw polygon web levels
+    # Draw polygon web levels (Hexagons)
     for lvl in levels:
         r = radius * lvl
         pts = []
@@ -79,7 +79,7 @@ def generate_radar(
     poly_pts_str = " ".join([f"{x:.1f},{y:.1f}" for x, y in data_pts])
 
     # Draw data polygon
-    svg_parts.append(f'  <polygon points="{poly_pts_str}" fill="{fill_color}" stroke="{accent_color}" stroke-width="2.5" filter="url(#glow-{filename})"/>')
+    svg_parts.append(f'  <polygon points="{poly_pts_str}" fill="{fill_color}" stroke="{accent_color}" stroke-width="2.5" filter="url(#{filter_id})"/>')
 
     # Draw vertex dots
     for x, y in data_pts:
@@ -104,6 +104,7 @@ if __name__ == '__main__':
         backend_labels, backend_vals,
         os.path.join(out_dir, "radar-backend-dark.svg"),
         "BACKEND ARCHITECTURE SIGNALS",
+        filter_id="glow_backend_dark",
         accent_color="#00f3ff",
         fill_color="rgba(0, 243, 255, 0.22)",
         is_dark=True
@@ -112,6 +113,7 @@ if __name__ == '__main__':
         backend_labels, backend_vals,
         os.path.join(out_dir, "radar-backend-light.svg"),
         "BACKEND ARCHITECTURE SIGNALS",
+        filter_id="glow_backend_light",
         accent_color="#0284c7",
         fill_color="rgba(2, 132, 199, 0.20)",
         is_dark=False
@@ -125,6 +127,7 @@ if __name__ == '__main__':
         stack_labels, stack_vals,
         os.path.join(out_dir, "radar-stack-dark.svg"),
         "CORE RUNTIME & LANGUAGE STACK",
+        filter_id="glow_stack_dark",
         accent_color="#ff007f",
         fill_color="rgba(255, 0, 127, 0.22)",
         is_dark=True
@@ -133,6 +136,7 @@ if __name__ == '__main__':
         stack_labels, stack_vals,
         os.path.join(out_dir, "radar-stack-light.svg"),
         "CORE RUNTIME & LANGUAGE STACK",
+        filter_id="glow_stack_light",
         accent_color="#db2777",
         fill_color="rgba(219, 39, 119, 0.20)",
         is_dark=False
