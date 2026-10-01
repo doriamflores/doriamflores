@@ -1,6 +1,6 @@
 <div align="center">
 
-<!-- CYBERPUNK HEADER BANNER WITH DARK/LIGHT SUPPORT -->
+<!-- CYBERPUNK HEADER BANNER WITH PORTRAIT & NEOVIM YAML (DARK/LIGHT SUPPORT) -->
 <a href="https://doriamflores.github.io/doriamflores/">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
@@ -65,7 +65,7 @@
       <td valign="top">
         <code>├─ 🤖 ai_agents_workflow:</code><br><br>
         <img src="https://skillicons.dev/icons?i=fastapi" alt="FastAPI">
-        <img src="https://cdn.simpleicons.org/openai/00f3ff?viewbox=auto" height="48" alt="OpenAI">
+        <img src="assets/icon-openai.svg" height="48" alt="OpenAI">
         <img src="https://cdn.simpleicons.org/langchain/00ff9f?viewbox=auto" height="48" alt="LangChain">
         <img src="https://cdn.simpleicons.org/anthropic/ff007f?viewbox=auto" height="48" alt="Anthropic"><br>
         <sub><code>OpenAI · LangChain · Claude · LLM Agents · Prompt Engineering</code></sub>
