@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 390" width="960" height="390" role="img" aria-labelledby="title desc">
+  <title id="title">Doriam Flores - Backend Developer &amp; AI Engineer</title>
+  <desc id="desc">Cyberpunk dark-neon terminal profile card with Doriam Flores's role, system status and core stack.</desc>
+  <defs>
+    <!-- Cyberpunk Gradients -->
+    <linearGradient id="cyberBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff"/>
+      <stop offset="50%" stop-color="#b026ff"/>
+      <stop offset="100%" stop-color="#ff007f"/>
+    </linearGradient>
+
+    <linearGradient id="neonPinkCyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff007f"/>
+      <stop offset="100%" stop-color="#00f3ff"/>
+    </linearGradient>
+
+    <linearGradient id="sunGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffe600"/>
+      <stop offset="50%" stop-color="#ff007f"/>
+      <stop offset="100%" stop-color="#7928ca"/>
+    </linearGradient>
+
+    <linearGradient id="gridGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#00f3ff" stop-opacity="0.05"/>
+    </linearGradient>
+
+    <!-- Glow Filter -->
+    <filter id="neonGlow" x="-20%" y="-30%" width="140%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <filter id="subtleGlow" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <style>
+    .mono { font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .term-title { fill: #00f3ff; font-weight: 700; }
+    .prompt { fill: #ff007f; font-weight: 700; }
+    .cmd { fill: #00f3ff; font-weight: 600; }
+    .param { fill: #ffe600; }
+    .val-str { fill: #00ff9f; }
+    .dim { fill: #6b728e; }
+    .accent { fill: #d946ef; }
+    .white { fill: #f1f5f9; }
+  </style>
+
+  <!-- Outer Window Background -->
+  <rect width="960" height="390" rx="14" fill="#08090e"/>
+  
+  <!-- Outer Glow Border -->
+  <rect x="2" y="2" width="956" height="386" rx="13" fill="none" stroke="url(#cyberBorder)" stroke-width="1.8" filter="url(#subtleGlow)"/>
+
+  <!-- Window Header Bar -->
+  <rect x="2" y="2" width="956" height="42" rx="13" fill="#10121d"/>
+  <rect x="2" y="32" width="956" height="12" fill="#10121d"/>
+  <path d="M2 44 H958" stroke="#1f2338" stroke-width="1.5"/>
+
+  <!-- Cyber Window Buttons -->
+  <circle cx="28" cy="22" r="5.5" fill="#ff0055" filter="url(#subtleGlow)"/>
+  <circle cx="48" cy="22" r="5.5" fill="#ffe600" opacity="0.9"/>
+  <circle cx="68" cy="22" r="5.5" fill="#00ff9f" filter="url(#subtleGlow)"/>
+
+  <!-- Window Title Badge -->
+  <text x="96" y="27" class="mono" font-size="13" fill="#6b728e">do'0r@cyberdeck</text>
+  <text x="210" y="27" class="mono" font-size="13" fill="#3b4261">::</text>
+  <text x="228" y="27" class="mono" font-size="13" fill="#00f3ff" filter="url(#subtleGlow)">bash ~ session_init.sh</text>
+  <text x="815" y="27" class="mono" font-size="12" fill="#00ff9f" font-weight="600">[KERNEL: ONLINE]</text>
+  <circle cx="802" cy="23" r="3.5" fill="#00ff9f" filter="url(#subtleGlow)"/>
+
+  <!-- ==================== LEFT TERMINAL PANEL ==================== -->
+  <rect x="22" y="58" width="606" height="312" rx="10" fill="#0d0f18" stroke="#252945" stroke-width="1.2"/>
+
+  <!-- Command 1: whoami -->
+  <text x="40" y="90" class="mono prompt" font-size="15">$</text>
+  <text x="56" y="90" class="mono cmd" font-size="15" filter="url(#subtleGlow)">whoami</text>
+  
+  <text x="40" y="116" class="mono white" font-size="16" font-weight="700">Doriam Flores</text>
+  <text x="180" y="116" class="mono dim" font-size="15">//</text>
+  <text x="202" y="116" class="mono param" font-size="14">Senior Backend &amp; AI Integrator</text>
+
+  <!-- Divider -->
+  <path d="M40 134 H608" stroke="#1a1e30" stroke-width="1"/>
+
+  <!-- Command 2: sys_info -->
+  <text x="40" y="160" class="mono prompt" font-size="14">doriam@door-server:~$</text>
+  <text x="235" y="160" class="mono cmd" font-size="14">cat /proc/system_info</text>
+
+  <text x="56" y="186" class="mono dim" font-size="13">location  :</text>
+  <text x="160" y="186" class="mono val-str" font-size="13">Lima, Perú [UTC-5] 🇵🇪</text>
+
+  <text x="56" y="208" class="mono dim" font-size="13">mission   :</text>
+  <text x="160" y="208" class="mono white" font-size="13">Sistemas distribuidos de alta concurrencia &amp; microservicios con IA</text>
+
+  <text x="56" y="230" class="mono dim" font-size="13">status    :</text>
+  <text x="160" y="230" class="mono" font-size="13" fill="#00ff9f" font-weight="600">active (sub-second latency · zero-downtime mentality)</text>
+
+  <!-- Divider -->
+  <path d="M40 248 H608" stroke="#1a1e30" stroke-width="1"/>
+
+  <!-- Command 3: cluster_nodes -->
+  <text x="40" y="274" class="mono prompt" font-size="14">$</text>
+  <text x="56" y="274" class="mono cmd" font-size="14">docker service ls --format &quot;table {{.Pillars}}&quot;</text>
+
+  <text x="56" y="300" class="mono accent" font-size="13" font-weight="600">CORE 01 ❯</text>
+  <text x="135" y="300" class="mono white" font-size="13">NestJS · Node.js · TypeScript · Go · Python</text>
+
+  <text x="56" y="324" class="mono accent" font-size="13" font-weight="600">CORE 02 ❯</text>
+  <text x="135" y="324" class="mono white" font-size="13">Microservicios · GraphQL · Redis · AWS Cloud · Docker</text>
+
+  <text x="56" y="348" class="mono accent" font-size="13" font-weight="600">CORE 03 ❯</text>
+  <text x="135" y="348" class="mono val-str" font-size="13">Agentic AI · LLMs Workflow · High Throughput APIs</text>
+
+
+  <!-- ==================== RIGHT CYBER ART PANEL ==================== -->
+  <rect x="644" y="58" width="294" height="312" rx="10" fill="#0d0f18" stroke="#252945" stroke-width="1.2"/>
+
+  <!-- Cyber Sub-header -->
+  <text x="662" y="86" class="mono" font-size="12" fill="#00f3ff" font-weight="700" letter-spacing="1">⚡ SYS_TELEMETRY // V2.0</text>
+  <path d="M662 96 H918" stroke="#1f2338" stroke-width="1"/>
+
+  <!-- Synthwave Neon Sun with Blinds -->
+  <circle cx="791" cy="182" r="54" fill="url(#sunGrad)" filter="url(#neonGlow)"/>
+  <!-- Blinds cutting through the sun -->
+  <path d="M730 180 H852 M732 192 H850 M736 204 H846 M742 216 H840 M750 226 H832" stroke="#0d0f18" stroke-width="4"/>
+
+  <!-- Cyber Perspective Grid at Bottom -->
+  <path d="M660 300 L922 300 M670 316 L912 316 M685 330 L897 330 M705 342 L877 342" stroke="#00f3ff" stroke-width="1" opacity="0.6"/>
+  <!-- Perspective lines converging to center -->
+  <path d="M791 260 L650 355 M791 260 L700 355 M791 260 L750 355 M791 260 L791 355 M791 260 L832 355 M791 260 L882 355 M791 260 L932 355" stroke="url(#gridGrad)" stroke-width="1.2"/>
+
+  <!-- Glowing neon horizon line -->
+  <path d="M660 262 H922" stroke="#ff007f" stroke-width="2.5" filter="url(#subtleGlow)"/>
+
+  <!-- Audio / Pulse wave graphic -->
+  <path d="M662 250 Q 690 230, 720 250 T 770 250 T 820 250 T 870 250 T 918 250" fill="none" stroke="#00ff9f" stroke-width="1.8" filter="url(#subtleGlow)" opacity="0.85"/>
+
+  <!-- Mini Telemetry Info -->
+  <text x="664" y="356" class="mono" font-size="11" fill="#6b728e">RUNTIME:</text>
+  <text x="726" y="356" class="mono" font-size="11" fill="#00f3ff">99.99% UPTIME</text>
+  <text x="840" y="356" class="mono" font-size="11" fill="#ff007f">DO'0R.DEV</text>
+</svg>

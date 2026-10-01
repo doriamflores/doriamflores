@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 390" width="440" height="390">
+  <defs>
+    <filter id="glow_stack_light" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur" />
+      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+    </filter>
+  </defs>
+  <rect width="440" height="390" rx="12" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="220" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="#0284c7" letter-spacing="1">⚡ CORE RUNTIME & LANGUAGE STACK ⚡</text>
+  <line x1="30" y1="52" x2="410" y2="52" stroke="#cbd5e1" stroke-width="1"/>
+  <polygon points="220.0,185.0 246.0,200.0 246.0,230.0 220.0,245.0 194.0,230.0 194.0,200.0" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" opacity="0.8"/>
+  <polygon points="220.0,155.0 272.0,185.0 272.0,245.0 220.0,275.0 168.0,245.0 168.0,185.0" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" opacity="0.8"/>
+  <polygon points="220.0,125.0 297.9,170.0 297.9,260.0 220.0,305.0 142.1,260.0 142.1,170.0" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" opacity="0.8"/>
+  <polygon points="220.0,95.0 323.9,155.0 323.9,275.0 220.0,335.0 116.1,275.0 116.1,155.0" fill="none" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="3,3" opacity="0.8"/>
+  <line x1="220" y1="215" x2="220.0" y2="95.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="220.0" y="77.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#475569" font-weight="500">TypeScript <tspan fill="#db2777" font-weight="700">[95%]</tspan></text>
+  <line x1="220" y1="215" x2="323.9" y2="155.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="348.2" y="146.0" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="11" fill="#475569" font-weight="500">NestJS <tspan fill="#db2777" font-weight="700">[96%]</tspan></text>
+  <line x1="220" y1="215" x2="323.9" y2="275.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="348.2" y="284.0" text-anchor="start" font-family="JetBrains Mono, monospace" font-size="11" fill="#475569" font-weight="500">Node.js <tspan fill="#db2777" font-weight="700">[95%]</tspan></text>
+  <line x1="220" y1="215" x2="220.0" y2="335.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="220.0" y="353.0" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="11" fill="#475569" font-weight="500">Python <tspan fill="#db2777" font-weight="700">[85%]</tspan></text>
+  <line x1="220" y1="215" x2="116.1" y2="275.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="91.8" y="284.0" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="#475569" font-weight="500">SQL / NoSQL <tspan fill="#db2777" font-weight="700">[92%]</tspan></text>
+  <line x1="220" y1="215" x2="116.1" y2="155.0" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="91.8" y="146.0" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="#475569" font-weight="500">Docker / Linux <tspan fill="#db2777" font-weight="700">[90%]</tspan></text>
+  <polygon points="220.0,101.0 319.8,157.4 318.7,272.0 220.0,317.0 124.4,270.2 126.5,161.0" fill="rgba(219, 39, 119, 0.20)" stroke="#db2777" stroke-width="2.5" filter="url(#glow_stack_light)"/>
+  <circle cx="220.0" cy="101.0" r="4" fill="#db2777" stroke="#f8fafc" stroke-width="1.5"/>
+  <circle cx="319.8" cy="157.4" r="4" fill="#db2777" stroke="#f8fafc" stroke-width="1.5"/>
+  <circle cx="318.7" cy="272.0" r="4" fill="#db2777" stroke="#f8fafc" stroke-width="1.5"/>
+  <circle cx="220.0" cy="317.0" r="4" fill="#db2777" stroke="#f8fafc" stroke-width="1.5"/>
+  <circle cx="124.4" cy="270.2" r="4" fill="#db2777" stroke="#f8fafc" stroke-width="1.5"/>
+  <circle cx="126.5" cy="161.0" r="4" fill="#db2777" stroke="#f8fafc" stroke-width="1.5"/>
+  <text x="220" y="375" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#475569" opacity="0.6">status: verified_production · tps: ultra_high</text>
+</svg>

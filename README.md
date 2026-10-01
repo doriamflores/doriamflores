@@ -1,11 +1,11 @@
 <div align="center">
 
-<!-- CYBERPUNK HEADER BANNER WITH PORTRAIT & NEOVIM YAML (DARK/LIGHT SUPPORT) -->
+<!-- CYBERPUNK HEADER BANNER WITH DITHERED PORTRAIT & NEOVIM YAML (DARK/LIGHT SUPPORT) -->
 <a href="https://doriamflores.github.io/doriamflores/">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.svg">
-    <img src="assets/banner-dark.svg" width="960" alt="Doriam Flores - Backend Architect & AI Integrator">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.v2.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/banner-light.v2.svg">
+    <img src="assets/banner-dark.v2.svg" width="960" alt="Doriam Flores - Backend Architect & AI Integrator">
   </picture>
 </a>
 
@@ -33,7 +33,7 @@
 ## ⚡ `$ whoami`
 
 <p align="center">
-  <img src="assets/whoami-cyberpunk.svg" width="960" alt="Terminal Cyberpunk Doriam Flores">
+  <img src="assets/whoami-cyberpunk.v2.svg" width="960" alt="Terminal Cyberpunk Doriam Flores">
 </p>
 
 <br>
@@ -106,14 +106,14 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/radar-backend-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/radar-backend-light.svg">
-    <img src="assets/radar-backend-dark.svg" width="440" alt="Backend Architecture Signals">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/radar-backend-dark.v2.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/radar-backend-light.v2.svg">
+    <img src="assets/radar-backend-dark.v2.svg" width="440" alt="Backend Architecture Signals">
   </picture>&nbsp;&nbsp;
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/radar-stack-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/radar-stack-light.svg">
-    <img src="assets/radar-stack-dark.svg" width="440" alt="Core Runtime and Language Stack">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/radar-stack-dark.v2.svg">
+    <source media="(prefers-color-scheme: light)" srcset="assets/radar-stack-light.v2.svg">
+    <img src="assets/radar-stack-dark.v2.svg" width="440" alt="Core Runtime and Language Stack">
   </picture>
 </p>
 
@@ -145,5 +145,5 @@
 <br><br>
 
 <div align="center">
-<sub>/* [SYS_INFO] Handcrafted with ⚡ &amp; high caffeine levels in Lima, Perú · <b>@Doriamflores</b> · Do'0r.dev */</sub>
+<sub>Hecho con mucha cafeína y ❤️</sub>
 </div>
