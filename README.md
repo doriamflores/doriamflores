@@ -104,18 +104,26 @@
 
 ## 📡 `$ sysctl --telemetry-radars`
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/radar-backend-dark.v2.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/radar-backend-light.v2.svg">
-    <img src="assets/radar-backend-dark.v2.svg" width="440" alt="Backend Architecture Signals">
-  </picture>&nbsp;&nbsp;
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/radar-stack-dark.v2.svg">
-    <source media="(prefers-color-scheme: light)" srcset="assets/radar-stack-light.v2.svg">
-    <img src="assets/radar-stack-dark.v2.svg" width="440" alt="Core Runtime and Language Stack">
-  </picture>
-</p>
+<table align="center" border="0" cellpadding="0" cellspacing="0" style="border: none; background: transparent;">
+  <tbody style="border: none; background: transparent;">
+    <tr style="border: none; background: transparent;">
+      <td align="center" valign="middle" style="border: none; padding: 0 8px; background: transparent;">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="assets/radar-backend-dark.v3.svg">
+          <source media="(prefers-color-scheme: light)" srcset="assets/radar-backend-light.v3.svg">
+          <img src="assets/radar-backend-dark.v3.svg" width="430" alt="Backend Architecture Signals">
+        </picture>
+      </td>
+      <td align="center" valign="middle" style="border: none; padding: 0 8px; background: transparent;">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="assets/radar-stack-dark.v3.svg">
+          <source media="(prefers-color-scheme: light)" srcset="assets/radar-stack-light.v3.svg">
+          <img src="assets/radar-stack-dark.v3.svg" width="430" alt="Core Runtime and Language Stack">
+        </picture>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <p align="center">
   <sub><code>signals: backend_architecture_radar · runtime_stack_radar · status: healthy [zero_packet_loss]</code></sub>

@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 410" width="520" height="410">
   <defs>
-    <filter id="glow_backend_light_v2" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_backend_light_v3" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="3.5" result="blur" />
       <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
     </filter>
@@ -24,7 +24,7 @@
   <text x="148.7" y="279.0" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="#475569" font-weight="500">IA Agents <tspan fill="#0284c7" font-weight="700">[88%]</tspan></text>
   <line x1="260" y1="220" x2="164.7" y2="165.0" stroke="#cbd5e1" stroke-width="1"/>
   <text x="148.7" y="169.0" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="#475569" font-weight="500">High TPS APIs <tspan fill="#0284c7" font-weight="700">[95%]</tspan></text>
-  <polygon points="260.0,114.4 345.7,170.5 343.8,268.4 260.0,323.4 176.2,268.4 169.5,167.8" fill="rgba(2, 132, 199, 0.20)" stroke="#0284c7" stroke-width="2.5" filter="url(#glow_backend_light_v2)"/>
+  <polygon points="260.0,114.4 345.7,170.5 343.8,268.4 260.0,323.4 176.2,268.4 169.5,167.8" fill="rgba(2, 132, 199, 0.20)" stroke="#0284c7" stroke-width="2.5" filter="url(#glow_backend_light_v3)"/>
   <circle cx="260.0" cy="114.4" r="4" fill="#0284c7" stroke="#f8fafc" stroke-width="1.5"/>
   <circle cx="345.7" cy="170.5" r="4" fill="#0284c7" stroke="#f8fafc" stroke-width="1.5"/>
   <circle cx="343.8" cy="268.4" r="4" fill="#0284c7" stroke="#f8fafc" stroke-width="1.5"/>

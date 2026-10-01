@@ -13,13 +13,14 @@ def generate_radar(
     if accent_color == "#ff007f":
         title_color = "#ff007f" if is_dark else "#db2777"
 
-    width, height = 440, 390
-    cx, cy = 220, 215
-    radius = 120
+    # Generous dimensions to guarantee no text truncation
+    width, height = 520, 410
+    cx, cy = 260, 220
+    radius = 110
     n = len(labels)
     angle_step = 2 * math.pi / n
 
-    # Concentric levels
+    # Concentric hexagon levels
     levels = [0.25, 0.50, 0.75, 1.0]
 
     safe_title = html.escape(title)
@@ -32,9 +33,9 @@ def generate_radar(
         '      <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>',
         '    </filter>',
         '  </defs>',
-        f'  <rect width="{width}" height="{height}" rx="12" fill="{bg_color}" stroke="{card_border}" stroke-width="1.5"/>',
-        f'  <text x="{width//2}" y="36" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="14" font-weight="700" fill="{title_color}" letter-spacing="1">⚡ {safe_title} ⚡</text>',
-        f'  <line x1="30" y1="52" x2="{width-30}" y2="52" stroke="{grid_color}" stroke-width="1"/>'
+        f'  <rect width="{width}" height="{height}" rx="14" fill="{bg_color}" stroke="{card_border}" stroke-width="1.5"/>',
+        f'  <text x="{width//2}" y="38" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" font-weight="700" fill="{title_color}" letter-spacing="1">⚡ {safe_title} ⚡</text>',
+        f'  <line x1="30" y1="54" x2="{width-30}" y2="54" stroke="{grid_color}" stroke-width="1"/>'
     ]
 
     # Draw polygon web levels (Hexagons)
@@ -47,22 +48,36 @@ def generate_radar(
             y = cy + r * math.sin(a)
             pts.append(f"{x:.1f},{y:.1f}")
         pts_str = " ".join(pts)
-        svg_parts.append(f'  <polygon points="{pts_str}" fill="none" stroke="{grid_color}" stroke-width="1" stroke-dasharray="3,3" opacity="0.8"/>')
+        svg_parts.append(f'  <polygon points="{pts_str}" fill="none" stroke="{grid_color}" stroke-width="1" stroke-dasharray="3,3" opacity="0.85"/>')
 
-    # Draw spokes and labels
+    # Draw spokes and labels with generous padding
     for i in range(n):
         a = -math.pi / 2 + i * angle_step
         x = cx + radius * math.cos(a)
         y = cy + radius * math.sin(a)
         svg_parts.append(f'  <line x1="{cx}" y1="{cy}" x2="{x:.1f}" y2="{y:.1f}" stroke="{grid_color}" stroke-width="1"/>')
 
-        lx = cx + (radius + 28) * math.cos(a)
-        ly = cy + (radius + 18) * math.sin(a)
-        anchor = "middle"
-        if math.cos(a) > 0.3:
+        cos_a = math.cos(a)
+        sin_a = math.sin(a)
+
+        # Precise anchor and offsets
+        if abs(cos_a) < 0.2:
+            # Top or Bottom
+            anchor = "middle"
+            lx = cx
+            ly = cy + (radius + 24) * sin_a
+            if sin_a < 0:
+                ly += 4
+        elif cos_a > 0.2:
+            # Right side
             anchor = "start"
-        elif math.cos(a) < -0.3:
+            lx = cx + radius * cos_a + 16
+            ly = cy + radius * sin_a + 4
+        else:
+            # Left side
             anchor = "end"
+            lx = cx + radius * cos_a - 16
+            ly = cy + radius * sin_a + 4
 
         val_pct = int(values[i] * 100)
         safe_label = html.escape(labels[i])
@@ -70,7 +85,7 @@ def generate_radar(
             f'  <text x="{lx:.1f}" y="{ly:.1f}" text-anchor="{anchor}" font-family="JetBrains Mono, monospace" font-size="11" fill="{text_color}" font-weight="500">{safe_label} <tspan fill="{accent_color}" font-weight="700">[{val_pct}%]</tspan></text>'
         )
 
-    # Calculate data points
+    # Calculate data polygon points
     data_pts = []
     for i in range(n):
         a = -math.pi / 2 + i * angle_step
@@ -86,7 +101,7 @@ def generate_radar(
     for x, y in data_pts:
         svg_parts.append(f'  <circle cx="{x:.1f}" cy="{y:.1f}" r="4" fill="{accent_color}" stroke="{bg_color}" stroke-width="1.5"/>')
 
-    svg_parts.append(f'  <text x="{width//2}" y="{height - 15}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="{text_color}" opacity="0.6">status: verified_production · tps: ultra_high</text>')
+    svg_parts.append(f'  <text x="{width//2}" y="{height - 14}" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="{text_color}" opacity="0.6">status: verified_production · tps: ultra_high</text>')
     svg_parts.append('</svg>')
 
     with open(filename, 'w', encoding='utf-8') as f:
@@ -99,7 +114,7 @@ if __name__ == '__main__':
     backend_labels = ["Microservicios", "Event-Driven", "Cloud AWS", "DB & Cache", "IA Agents", "High TPS APIs"]
     backend_vals = [0.96, 0.90, 0.88, 0.94, 0.88, 0.95]
 
-    for suffix in ["", ".v2"]:
+    for suffix in ["", ".v2", ".v3"]:
         generate_radar(
             backend_labels, backend_vals,
             os.path.join(out_dir, f"radar-backend-dark{suffix}.svg"),

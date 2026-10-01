@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 410" width="520" height="410">
   <defs>
-    <filter id="glow_stack_dark_v2" x="-20%" y="-20%" width="140%" height="140%">
+    <filter id="glow_stack_dark_v3" x="-20%" y="-20%" width="140%" height="140%">
       <feGaussianBlur stdDeviation="3.5" result="blur" />
       <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
     </filter>
@@ -24,7 +24,7 @@
   <text x="148.7" y="279.0" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="#94a3b8" font-weight="500">SQL / NoSQL <tspan fill="#ff007f" font-weight="700">[92%]</tspan></text>
   <line x1="260" y1="220" x2="164.7" y2="165.0" stroke="#1a1e30" stroke-width="1"/>
   <text x="148.7" y="169.0" text-anchor="end" font-family="JetBrains Mono, monospace" font-size="11" fill="#94a3b8" font-weight="500">Docker / Linux <tspan fill="#ff007f" font-weight="700">[90%]</tspan></text>
-  <polygon points="260.0,115.5 351.5,167.2 350.5,272.2 260.0,313.5 172.4,270.6 174.3,170.5" fill="rgba(255, 0, 127, 0.22)" stroke="#ff007f" stroke-width="2.5" filter="url(#glow_stack_dark_v2)"/>
+  <polygon points="260.0,115.5 351.5,167.2 350.5,272.2 260.0,313.5 172.4,270.6 174.3,170.5" fill="rgba(255, 0, 127, 0.22)" stroke="#ff007f" stroke-width="2.5" filter="url(#glow_stack_dark_v3)"/>
   <circle cx="260.0" cy="115.5" r="4" fill="#ff007f" stroke="#0a0c14" stroke-width="1.5"/>
   <circle cx="351.5" cy="167.2" r="4" fill="#ff007f" stroke="#0a0c14" stroke-width="1.5"/>
   <circle cx="350.5" cy="272.2" r="4" fill="#ff007f" stroke="#0a0c14" stroke-width="1.5"/>
