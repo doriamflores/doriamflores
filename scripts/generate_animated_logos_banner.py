@@ -47,7 +47,7 @@ def generate_animated_banner(output_path, filter_id, is_dark=True):
         (" 1", "profile:", True, purple_accent),
         (" 2", "  subject: ", False, pink_accent, "Doriam Flores", text_white),
         (" 3", "  role: ", False, pink_accent, "Senior Backend Developer & AI Integrator", text_white),
-        (" 4", "  origin: ", False, pink_accent, "Lima, Perú [UTC-5] 🇵🇪", text_white),
+        (" 4", "  origin: ", False, pink_accent, "Lima, Perú 🇵🇪  # Perú es clave", text_white),
         (" 5", "  focus: ", False, pink_accent, "Microservices · Event-Driven · AI Agents", text_white),
         (" 6", "  status: ", False, pink_accent, "Ready for Production · Sub-second Latency", green_accent),
         (" 7", "stack:", True, purple_accent),

@@ -112,7 +112,7 @@
   <text x="510" y="183.0" text-anchor="end" class="mono" font-size="12" fill="#475569"> 3</text>
   <text x="528" y="183.0" class="mono" font-size="12"><tspan fill="#ff007f">  role: </tspan><tspan fill="#f1f5f9">Senior Backend Developer &amp; AI Integrator</tspan></text>
   <text x="510" y="203.5" text-anchor="end" class="mono" font-size="12" fill="#475569"> 4</text>
-  <text x="528" y="203.5" class="mono" font-size="12"><tspan fill="#ff007f">  origin: </tspan><tspan fill="#f1f5f9">Lima, Perú [UTC-5] 🇵🇪</tspan></text>
+  <text x="528" y="203.5" class="mono" font-size="12"><tspan fill="#ff007f">  origin: </tspan><tspan fill="#f1f5f9">Lima, Perú 🇵🇪  # Perú es clave</tspan></text>
   <text x="510" y="224.0" text-anchor="end" class="mono" font-size="12" fill="#475569"> 5</text>
   <text x="528" y="224.0" class="mono" font-size="12"><tspan fill="#ff007f">  focus: </tspan><tspan fill="#f1f5f9">Microservices · Event-Driven · AI Agents</tspan></text>
   <text x="510" y="244.5" text-anchor="end" class="mono" font-size="12" fill="#475569"> 6</text>

@@ -153,5 +153,5 @@
 <br><br>
 
 <div align="center">
-<sub>Hecho con mucha cafeína y ❤️</sub>
+<sub>Hecho con mucha cafeína y ❤️ · 🇵🇪 Perú es clave</sub>
 </div>
